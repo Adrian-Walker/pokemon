@@ -12,12 +12,12 @@ export default function App() {
       const pokemonIds = await fetch(path);
       const pokemonIdsBody = await pokemonIds.json();
 
-      const pokemonInfo = pokemonIdsBody.map((poke) => fetch(poke.url));
+      const pokemonInfo = pokemonIdsBody.results.map((poke) => fetch(poke.url));
       console.log(pokemonInfo);
+      setPokemonDetails(pokemonInfo);
     };
     fetchPokemon();
   }, []);
-  
 
   return (
     <View style={styles.container}>
