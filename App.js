@@ -2,21 +2,26 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect, useState, useCallback } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-const path = "https://api-nba-v1.p.rapidapi.com/players";
+const path = "https://pokeapi.co/api/v2/pokemon?limit=151&offset=0";
 
 export default function App() {
-  useEffect(async () => {
-    const fetchPlayers = async () => {
-      const response = await fetch(path);
-      return response;
+  const [pokemonDetails, setPokemonDetails] = useState([]);
+
+  useEffect(() => {
+    const fetchPokemon = async () => {
+      const pokemonIds = await fetch(path);
+      const pokemonIdsBody = await pokemonIds.json();
+
+      const pokemonInfo = pokemonIdsBody.map((poke) => fetch(poke.url));
+      console.log(pokemonInfo);
     };
-    fetchPlayers();
-    response = await response.json();
+    fetchPokemon();
   }, []);
+  console.log(pokemonDetails);
 
   return (
     <View style={styles.container}>
-      <Text>FUCK YOU</Text>
+      <Text>NBA Ballers</Text>
       <StatusBar style="auto" />
     </View>
   );
