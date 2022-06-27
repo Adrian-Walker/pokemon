@@ -17,7 +17,7 @@ export default function App() {
     };
     fetchPokemon();
   }, []);
-  console.log(pokemonDetails);
+  
 
   return (
     <View style={styles.container}>
